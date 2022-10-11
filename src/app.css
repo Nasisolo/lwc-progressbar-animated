@@ -1,8 +1,6 @@
 :host {
   --start-width: 0%;
-  --bar-color-1: #fff;
-  --bar-color-2: #fff;
-  --bar-color-3: #fff;
+  --bar-color-not-colored: #fff;
 }
 
 body {
@@ -50,16 +48,25 @@ body {
 }
 
 @keyframes load-1 {
-  0% { width: var(--start-width); }
+  0% {
+    width: var(--start-width);
+    background: var(--bar-color-not-colored);
+  }
   100% { width: var(--end-width-1); }
 }
 
 @keyframes load-2 {
-  0% { width: var(--start-width); }
+  0% {
+    width: var(--start-width);
+    background: var(--bar-color-not-colored);
+  }
   100% { width: var(--end-width-2); }
 }
 
 @keyframes load-3 {
-  0% { width: var(--start-width); }
+  0% {
+    width: var(--start-width);
+    background: var(--bar-color-not-colored);
+  }
   100% { width: var(--end-width-3); }
 }
