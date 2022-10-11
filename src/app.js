@@ -1,5 +1,21 @@
 import { LightningElement } from "lwc";
 
+const RED_BELOW_PERCENTAGE = 30;
+
+const RED_COLOR = '#FF6347';
+const YELLOW_COLOR = '#f3c623';
+const GREEN_COLOR = '#228B22';
+
+// property to set in js for filling bars
+const END_PERCENTAGE_1 = '--end-width-1';
+const END_PERCENTAGE_2 = '--end-width-2';
+const END_PERCENTAGE_3 = '--end-width-3';
+
+// bar colors to set in js
+const COLOR_BAR_1 = '--bar-color-1';
+const COLOR_BAR_2 = '--bar-color-2';
+const COLOR_BAR_3 = '--bar-color-3';
+
 export default class App extends LightningElement {
 
   connectedCallback(){
@@ -8,18 +24,39 @@ export default class App extends LightningElement {
   }
 
   setPBarProgress(){
-    let actualValue1 = 50;
+
+    // example values
+    let actualValue1 = 60;
     let actualValue2 = 20;
-    let actualValue3 = 70;
-    const docStyle = document.documentElement.style;
-    docStyle.setProperty('--end-width-1', `${actualValue1}%`);
-    docStyle.setProperty('--end-width-2', `${actualValue2}%`);
-    docStyle.setProperty('--end-width-3', `${actualValue3}%`);
+    let actualValue3 = 100;
+
+    this.setProperties(END_PERCENTAGE_1, `${actualValue1}%`);
+    this.setProperties(END_PERCENTAGE_2, `${actualValue2}%`);
+    this.setProperties(END_PERCENTAGE_3, `${actualValue3}%`);
+
+    this.setColorProperty(COLOR_BAR_1, actualValue1);
+    this.setColorProperty(COLOR_BAR_2, actualValue2);
+    this.setColorProperty(COLOR_BAR_3, actualValue3);
+
     /*
     document.documentElement.style.setProperty('--end-width', `${actualValue}%`);
     console.log(getComputedStyle(document.documentElement)
       .getPropertyValue('--end-width'));
     */
+  }
+
+  setProperties(cssVar, cssValue){
+    	const docStyle = document.documentElement.style;
+      docStyle.setProperty(cssVar, cssValue);
+  }
+
+  setColorProperty(cssVar, actualValue){
+    let colorValue = actualValue === 100 ? 
+      GREEN_COLOR :
+      actualValue <= RED_BELOW_PERCENTAGE ?
+        RED_COLOR : YELLOW_COLOR;
+
+    this.setProperties(cssVar, colorValue);
   }
 
 }
