@@ -1,0 +1,7 @@
+{
+  "name": "@wcd/nasisolo.lwc-l941m92p-fork-l946f8uq",
+  "version": "0.0.0",
+  "scripts": {
+    "serve": "npx wcd-cli@latest serve LrrPqUudfua6I83aBewX --open"
+  }
+}
