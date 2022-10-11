@@ -1,7 +1,9 @@
 import { LightningElement } from "lwc";
 
 const RED_BELOW_PERCENTAGE = 30;
+const ANIMATION_TIME = 5000;
 
+// colors
 const RED_COLOR = '#FF6347';
 const YELLOW_COLOR = '#f3c623';
 const GREEN_COLOR = '#228B22';
@@ -16,12 +18,33 @@ const COLOR_BAR_1 = '--bar-color-1';
 const COLOR_BAR_2 = '--bar-color-2';
 const COLOR_BAR_3 = '--bar-color-3';
 
+// counter classes
+const COUNTER_1 = '.percentage-counter-1';
+const COUNTER_2 = '.percentage-counter-2';
+const COUNTER_3 = '.percentage-counter-3';
+
 export default class App extends LightningElement {
 
-  connectedCallback(){
-    this.setPBarProgress();
-    
+  connectedCallback(){ /* render all in renderdCallback */
   }
+
+  renderedCallback(){
+    this.setPBarProgress();
+    //this.setCountersInterval();
+    const counterDiv = this.template.querySelector(".percentage-counter-1");
+    let counter = 0;
+    let iter = setInterval(() => {
+      counterDiv.innerHTML = `${counter}%`;
+      //counter++;
+      counter += 0.5;
+
+      if(counter >= 61){
+        clearInterval(iter);
+      }
+    }, 5000/60);
+  }
+
+  setCounter(counterClass, ){}
 
   setPBarProgress(){
 
@@ -38,7 +61,7 @@ export default class App extends LightningElement {
     this.setColorProperty(COLOR_BAR_2, actualValue2);
     this.setColorProperty(COLOR_BAR_3, actualValue3);
 
-    /*
+    /* just for reading
     document.documentElement.style.setProperty('--end-width', `${actualValue}%`);
     console.log(getComputedStyle(document.documentElement)
       .getPropertyValue('--end-width'));
@@ -58,5 +81,4 @@ export default class App extends LightningElement {
 
     this.setProperties(cssVar, colorValue);
   }
-
 }
