@@ -51,7 +51,7 @@ export default class App extends LightningElement {
   }
 
   setColorProperty(cssVar, actualValue){
-    let colorValue = actualValue === 100 ? 
+    let colorValue = actualValue >= 100 ? 
       GREEN_COLOR :
       actualValue <= RED_BELOW_PERCENTAGE ?
         RED_COLOR : YELLOW_COLOR;
