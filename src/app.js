@@ -15,7 +15,7 @@ const END_PERCENTAGE_1 = '--end-width-1';
 const END_PERCENTAGE_2 = '--end-width-2';
 const END_PERCENTAGE_3 = '--end-width-3';
 
-// bar colors to set in js
+// bar colors to set in js (represents reaching color)
 const COLOR_BAR_1 = '--bar-color-1';
 const COLOR_BAR_2 = '--bar-color-2';
 const COLOR_BAR_3 = '--bar-color-3';
