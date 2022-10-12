@@ -1,7 +1,11 @@
 import { LightningElement } from "lwc";
 
 const RED_BELOW_PERCENTAGE = 30;
+const ANIMATION_TIME = 5000;
 
+const TIME_CSS_VAR = '--millis-animation';
+
+// colors
 const RED_COLOR = '#FF6347';
 const YELLOW_COLOR = '#f3c623';
 const GREEN_COLOR = '#228B22';
@@ -16,11 +20,17 @@ const COLOR_BAR_1 = '--bar-color-1';
 const COLOR_BAR_2 = '--bar-color-2';
 const COLOR_BAR_3 = '--bar-color-3';
 
+// counter classes
+const COUNTER_1 = '.percentage-counter-1';
+const COUNTER_2 = '.percentage-counter-2';
+const COUNTER_3 = '.percentage-counter-3';
+
 export default class App extends LightningElement {
 
-  connectedCallback(){
-    this.setPBarProgress();
-    
+  connectedCallback(){ /* render all in renderdCallback */ }
+
+  renderedCallback(){
+    this.setPBarProgress();    
   }
 
   setPBarProgress(){
@@ -38,7 +48,13 @@ export default class App extends LightningElement {
     this.setColorProperty(COLOR_BAR_2, actualValue2);
     this.setColorProperty(COLOR_BAR_3, actualValue3);
 
-    /*
+    this.setGrowingCounter(COUNTER_1, actualValue1);
+    this.setGrowingCounter(COUNTER_2, actualValue2);
+    this.setGrowingCounter(COUNTER_3, actualValue3);
+
+    this.setAnimationsTiming(TIME_CSS_VAR, ANIMATION_TIME);
+
+    /* just for reading
     document.documentElement.style.setProperty('--end-width', `${actualValue}%`);
     console.log(getComputedStyle(document.documentElement)
       .getPropertyValue('--end-width'));
@@ -59,4 +75,20 @@ export default class App extends LightningElement {
     this.setProperties(cssVar, colorValue);
   }
 
+  setGrowingCounter(counterClass, percentageToReach){
+    const counterDiv = this.template.querySelector(counterClass);
+      let counter = 0;
+      let iter = setInterval(() => {
+        counterDiv.innerHTML = `${counter}%`;
+        counter++;
+
+        if(counter >= percentageToReach + 1){
+          clearInterval(iter);
+        }
+      }, ANIMATION_TIME/percentageToReach);
+  }
+
+  setAnimationsTiming(cssVar, animationTiming){
+    this.setProperties(cssVar, `${animationTiming}ms`);
+  }
 }
