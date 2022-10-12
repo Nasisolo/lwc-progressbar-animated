@@ -1,6 +1,6 @@
 :host {
   --start-width: 0%;
-  --bar-color-not-colored: #fff;
+  --start-color: #FF6347;
 }
 
 body {
@@ -82,7 +82,7 @@ body {
 @keyframes load-1 {
   0% {
     width: var(--start-width);
-    background: var(--bar-color-not-colored);
+    background: var(--start-color);
   }
   100% {
     width: var(--end-width-1);
@@ -93,7 +93,7 @@ body {
 @keyframes load-2 {
   0% {
     width: var(--start-width);
-    background: var(--bar-color-not-colored);
+    background: var(--start-color);
   }
   100% {
     width: var(--end-width-2);
@@ -104,7 +104,7 @@ body {
 @keyframes load-3 {
   0% {
     width: var(--start-width);
-    background: var(--bar-color-not-colored);
+    background: var(--start-color);
   }
   100% {
     width: var(--end-width-3);
