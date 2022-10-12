@@ -15,51 +15,6 @@ body {
   float: right;
 }
 
-/*
-.percentage-counter-1::after {
-  font: 800 40px system-ui;
-  content: counter(count);
-  animation: counter 5s normal forwards infinite;
-  counter-reset: count 0;
-}
-
-@keyframes counter {
-  0% {
-    counter-increment: count 0;
-  }
-  10% {
-    counter-increment: count 1;
-  }
-  20% {
-    counter-increment: count 2;
-  }
-  30% {
-    counter-increment: count 3;
-  }
-  40% {
-    counter-increment: count 4;
-  }
-  50% {
-    counter-increment: count 5;
-  }
-  60% {
-    counter-increment: count 6;
-  }
-  70% {
-    counter-increment: count 7;
-  }
-  80% {
-    counter-increment: count 8;
-  }
-  90% {
-    counter-increment: count 9;
-  }
-  100% {
-    counter-increment: count 20;
-  }
-}
-*/
-
 .title {
   padding-left: 5px;
   font-size: 1.8em;
@@ -86,40 +41,40 @@ body {
 
 /* PBar 1 */
 .progress-title-1 {
-  animation: title-1 5s normal forwards infinite;
+  animation: title-1 var(--millis-animation) normal forwards infinite;
   color: var(--bar-color-1);
 }
 .percentage-counter-1 {
   color: var(--bar-color-1);
 }
 .progress-status-1 {
-    animation: load-1 5s normal forwards infinite;
+    animation: load-1 var(--millis-animation) normal forwards infinite;
     background: var(--bar-color-1);
 }
 
 /* PBar 2 */
 .progress-title-2 {
-  animation: title-2 5s normal forwards infinite;
+  animation: title-2 var(--millis-animation) normal forwards infinite;
   color: var(--bar-color-2);
 }
 .percentage-counter-2 {
   color: var(--bar-color-2);
 }
 .progress-status-2 {
-    animation: load-2 5s normal forwards infinite;
+    animation: load-2 var(--millis-animation) normal forwards infinite;
     background: var(--bar-color-2);
 }
 
 /* PBar 3 */
 .progress-title-3 {
-  animation: title-3 5s normal forwards infinite;
+  animation: title-3 var(--millis-animation) normal forwards infinite;
   color: var(--bar-color-3);
 }
 .percentage-counter-3 {
   color: var(--bar-color-3);
 }
 .progress-status-3 {
-    animation: load-3 5s normal forwards infinite;
+    animation: load-3 var(--millis-animation) normal forwards infinite;
     background: var(--bar-color-3);
 }
 

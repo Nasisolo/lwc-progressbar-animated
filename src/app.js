@@ -3,6 +3,8 @@ import { LightningElement } from "lwc";
 const RED_BELOW_PERCENTAGE = 30;
 const ANIMATION_TIME = 5000;
 
+const TIME_CSS_VAR = '--millis-animation';
+
 // colors
 const RED_COLOR = '#FF6347';
 const YELLOW_COLOR = '#f3c623';
@@ -25,26 +27,11 @@ const COUNTER_3 = '.percentage-counter-3';
 
 export default class App extends LightningElement {
 
-  connectedCallback(){ /* render all in renderdCallback */
-  }
+  connectedCallback(){ /* render all in renderdCallback */ }
 
   renderedCallback(){
-    this.setPBarProgress();
-    //this.setCountersInterval();
-    const counterDiv = this.template.querySelector(".percentage-counter-1");
-    let counter = 0;
-    let iter = setInterval(() => {
-      counterDiv.innerHTML = `${counter}%`;
-      //counter++;
-      counter += 0.5;
-
-      if(counter >= 61){
-        clearInterval(iter);
-      }
-    }, 5000/60);
+    this.setPBarProgress();    
   }
-
-  setCounter(counterClass, ){}
 
   setPBarProgress(){
 
@@ -60,6 +47,12 @@ export default class App extends LightningElement {
     this.setColorProperty(COLOR_BAR_1, actualValue1);
     this.setColorProperty(COLOR_BAR_2, actualValue2);
     this.setColorProperty(COLOR_BAR_3, actualValue3);
+
+    this.setGrowingCounter(COUNTER_1, actualValue1);
+    this.setGrowingCounter(COUNTER_2, actualValue2);
+    this.setGrowingCounter(COUNTER_3, actualValue3);
+
+    this.setAnimationsTiming(TIME_CSS_VAR, ANIMATION_TIME);
 
     /* just for reading
     document.documentElement.style.setProperty('--end-width', `${actualValue}%`);
@@ -80,5 +73,22 @@ export default class App extends LightningElement {
         RED_COLOR : YELLOW_COLOR;
 
     this.setProperties(cssVar, colorValue);
+  }
+
+  setGrowingCounter(counterClass, percentageToReach){
+    const counterDiv = this.template.querySelector(counterClass);
+      let counter = 0;
+      let iter = setInterval(() => {
+        counterDiv.innerHTML = `${counter}%`;
+        counter++;
+
+        if(counter >= percentageToReach + 1){
+          clearInterval(iter);
+        }
+      }, ANIMATION_TIME/percentageToReach);
+  }
+
+  setAnimationsTiming(cssVar, animationTiming){
+    this.setProperties(cssVar, `${animationTiming}ms`);
   }
 }
